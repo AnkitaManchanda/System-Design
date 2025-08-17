@@ -49,12 +49,27 @@ class SaveToDB {
 private:
     ShoppingCart* cart;
 public:
-    SaveToDB(ShoppingCart* c) : cart(c) {}
-    void saveCart() {
-        std::cout << "Saving cart to database..." << endl;
-    }
+    //SaveToDB(ShoppingCart* c) : cart(c) {}
+    virtual void save(ShoppingCart* c)=0;
 };
-
+class SaveToSQL:public SaveToDB{
+public:
+  	void save(ShoppingCart* c) override{
+  		cout<<"Save to SQL "<<endl;
+	  }
+};
+class SaveToFile:public SaveToDB{
+public:
+  	void save(ShoppingCart* c) override{
+  		cout<<"Save to File "<<endl;
+	  }
+};
+class SaveToMongoDB:public SaveToDB{
+public:
+  	void save(ShoppingCart* c) override{
+  		cout<<"Save to MongoDB "<<endl;
+	  }
+};
 int main() {
     ShoppingCart* cart=new ShoppingCart();
     cart->addProduct(new Product("Apple", 0.99));
@@ -63,7 +78,7 @@ int main() {
     Invoice* invoice=new Invoice(cart);
     invoice->generateInvoice();
 
-    SaveToDB* dbSaver=new SaveToDB(cart);
-    dbSaver->saveCart();
+    SaveToDB* dbSaver=new SaveToFile();
+    dbSaver->save(cart);
     return 0;
 }

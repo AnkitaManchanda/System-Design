@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "x:/System Design",
-      "program": "x:/System Design/build/Debug/outDebug",
+      "cwd": "x:/System Design/SOLID",
+      "program": "x:/System Design/SOLID/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
